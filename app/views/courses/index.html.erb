@@ -6,12 +6,15 @@
   <hr />
 
   <% @courses.each do |course| %>
-  <h2 class="text-center">
+  <h2>
     <%= link_to course.title, course_path(course) %>
   </h2>
   <br />
   <div class="row">
-    <div class="col-sm-8 col-12">
+    <div class="col-sm-3 col-12 img-fluid">
+      <%= image_tag course.image.url, width: 220  %>
+    </div>
+    <div class="col-sm-5 col-12">
       <%= course.description %>
     </div>
     <div class="col-sm-4 col-12 text-center">
