@@ -1,73 +1,114 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>flixter</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-     <link href="https://vjs.zencdn.net/7.5.5/video-js.css" rel="stylesheet">
-
+    <link href="https://vjs.zencdn.net/7.5.5/video-js.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
-
-  <div class= "flex-content-container">
-
-  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <%= link_to 'flixter', root_path, class: 'navbar-brand' %>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-          
-          <li class= "nav-item">
-            <%= link_to "See All Courses", courses_path, class: 'nav-link' %>
-        </ul>
-        <ul class="navbar-nav">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to 'My Dashboard', dashboard_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
-              </li>
-            <% end %>
-          </ul>
-      </div>
-    </nav>
-
-    <% if notice.present? %>
-    <p class="alert alert-info"><%= notice %></p>
-    <% end %>
-    <% if alert.present? %>
-    <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+<body>
+    <div class="flex-content-container">
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <%= link_to 'flixter', root_path, class: 'navbar-brand' %>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+                    <li class="nav-item">
+                        <%= link_to "See All Courses", courses_path, class: 'nav-link' %>
+                </ul>
+                <ul class="navbar-nav">
+                    <% if user_signed_in? %>
+                    <li class="nav-item">
+                        <%= link_to 'My Dashboard', dashboard_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+                    </li>
+                    <% else %>
+                    <li class="nav-item">
+                        <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+        </nav>
+        <% if notice.present? %>
+        <p class="alert alert-info">
+            <%= notice %>
+        </p>
+        <% end %>
+        <% if alert.present? %>
+        <p class="alert alert-danger">
+            <%= alert %>
+        </p>
+        <% end %>
+        <%= yield %>
+    </div>
     
-    <%= yield %>
-  </div>
-
-  <div id= "footer">
-    <div class="container">
-      <b>Teachers</b>
-    <br />
-    <%= link_to 'Teach a Course', new_instructor_course_path %>
+    <div id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-3">
+        <br />
+        <b>Teachers</b>
+        <br />
+        <%= link_to 'Teach a Course', new_instructor_course_path %>
+        <br />
+        <%= link_to 'My Dashboard', dashboard_path %>
+      </div>
+      <div class="col-12 col-sm-3">
+         <br />
+        <b>About</b>
+        <br />
+        <%= link_to 'Team', '#' %>
+        <br />
+        <%= link_to 'Careers', '#' %>
+        <br />
+        <%= link_to 'Privacy Policy', '#' %>
+      </div>
+      <div class="col-12 col-sm-3">
+        <br />
+        <b>Contact</b>
+        <br />
+        contactus@flixter.com
+        <br />
+        123 Corner Street
+        <br />
+        Toronto, ON, M1K-3W1
+      </div>
+      <div class="col-12 col-sm-3">
+  <br />
+  <b>Social</b>
+  
+  <br />
+  <%= link_to 'https://github.com/stalloneds' do %>
+    <span class="fa fa-github-square fa-2x social-button"></span>
+  <% end %>
+  <%= link_to 'https://www.facebook.com/' do %>
+  <span class="fa fa-facebook-square fa-2x social-button"></span>
+  <% end %>
+  <%= link_to 'https://www.twitter.com/' do %>
+  <span class="fa fa-twitter-square fa-2x social-button"></span>
+  <% end %>
+</div>
     </div>
   </div>
+  <br />
+  <br />
+</div>
 
-  <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
-  <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+</body>
 
-  </body>
 </html>
